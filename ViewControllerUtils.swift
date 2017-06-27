@@ -1,12 +1,14 @@
 /*
-Updated and forked from dev-notes/swift/ViewControllerUtils.swift
-
-In order to show the activity indicator, call the function from your view controller
-ViewControllerUtils().showActivityIndicator(self.view)
-
-In order to hide the activity indicator, call the function from your view controller
-ViewControllerUtils().hideActivityIndicator(self.view)
-*/
+ In order to show the activity indicator, call the function from your view
+ ViewControllerUtils().showActivityIndicator(
+ 
+ In order to hide the activity indicator, call the function from your view
+ ViewControllerUtils().hideActivityIndicator(self.view)
+ 
+ To display an alert, call the function from your view controller
+ ViewControllerUtils().createAlert(title: "Alert", message: "Alert message", viewController: self)
+ 
+ */
 
 import Foundation
 import UIKit
@@ -65,6 +67,17 @@ class ViewControllerUtils {
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
         let blue = CGFloat(rgbValue & 0xFF)/256.0
         return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
+    }
+    
+    func createAlert(title: String, message: String, viewController: UIViewController) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        viewController.present(alert, animated: true, completion: nil)
     }
     
 }
